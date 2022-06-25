@@ -50,10 +50,24 @@ if user_option == "1":
         
 
 #If user chose 2, ask for user name and password and
-# - validate username and password length. If valid, write to users.txt file
-# - and move on
-#If not valid re prompt user
+elif user_option == "2":
+    while True:
+        user_name = input("Please enter your user name (4 - 12 characters): ")
+        user_pass = input("Please enter your password (6 - 16 characters): ")
 
+        user_name_length = len(user_name)
+        user_pass_length = len(user_pass)
+
+        if (user_name_length >= 4 and user_name_length <= 12) and (user_pass_length >= 6 and user_pass_length <= 16):
+            #write user and pass to file
+            user_file = open("users.txt", "a")
+            user_file.write(f"{user_name}, {user_pass}\n")
+            user_file.close()
+            break
+        else:
+            print("ERROR: Inncorrect Username and or Password Length.")
+
+print("Ask user for student data")
 #Ask user how many students to enter data for
 #prompt user to enter student name and number score
 #store data somewhere
