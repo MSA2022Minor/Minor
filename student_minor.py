@@ -1,25 +1,63 @@
 #print the menu
-print("1. Login")
-print("2. Creat User")
+from ast import While
 
-#get the option the user selected
+
+print("Select option from Menu\n-----------------------")
+print("1. Login")
+print("2. Create User")
+
+#prompt and get the option the user selected
 while True:
-    user_option = input("Would you like to (1) login or (2) create account?")
+    user_option = input("Would you like to (1) login or (2)create account? ")
     #Ensure the user entered a valid option (1 or 2)
-    if user_option != 1 and user_option != 2:
+    if user_option != "1" and user_option != "2":
+        # -if not, prompt user again
         print("\nERROR: Enter a 1 or 2")
         continue
     else:
-        print("Yay! Your not dumb!")
-        break
-    # -if not, ptomt user again
-# is user shose 1 ask for user name and password and 
-# - validate username and password combination in the user.txt file
-# - if not valid combination repromt the user
-# - if valid then move on to prompt for student data
-#if user chose 2, ask for user name and password and 
-# - validate username and passworf lenght. if valid, write to user.tx flie 
-# - and move on
-#if not valid re prompt user
+        print("YaY! Good input")
+        break     
 
-# promt user to enter student name and number score
+
+if user_option == "1":
+    while True:
+        #If user chose 1, ask for user name and password and
+        user_name = input("Please enter your user name: ")
+        user_pass = input("Please enter your password: ")
+        # - validate username and password combination in the users.txt file
+        #open the users files
+        user_file = open("users.txt", "r")
+        user_found = False
+
+        #read the lines from the file
+        for line in user_file:
+            credentials = line.split(", ")
+             #compare username and password for a match
+            if user_name == credentials[0] and user_pass == credentials[1].rstrip():
+                user_found = True
+                break
+
+        if user_found:
+            # - if valid then move on to prompt for student data
+            print(f"User {user_name} successfully logged in!\n")
+            break
+        else:
+            # - if not valid combination reprompt the user. 
+            print(f"User {user_name} not found!\n")
+        
+       
+        
+        
+
+#If user chose 2, ask for user name and password and
+# - validate username and password length. If valid, write to users.txt file
+# - and move on
+#If not valid re prompt user
+
+#Ask user how many students to enter data for
+#prompt user to enter student name and number score
+#store data somewhere
+#convert the number score to a letter grade 
+
+#Print student data(name, score, grade)
+#Calculate and print class average
