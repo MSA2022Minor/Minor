@@ -67,10 +67,14 @@ elif user_option == "2":
         else:
             print("ERROR: Inncorrect Username and or Password Length.")
 
-print("Ask user for student data")
+print("Ask user for student data.")
 #Ask user how many students to enter data for
 #prompt user to enter student name and number score
 #store data somewhere
+#convert the number score to a letter grade 
+
+#Print student data(name, score, grade)
+#Calculate and print class average
 #convert the number score to a letter grade 
 
 #Print student data(name, score, grade)
