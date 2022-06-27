@@ -68,12 +68,36 @@ elif user_option == "2":
             print("ERROR: Inncorrect Username and or Password Length.")
 
 print("Ask user for student data.")
+#create 3 
+student_names = []
+student_scores = []
+student_letter_grades = []
 #Ask user how many students to enter data for
-#prompt user to enter student name and number score
-#store data somewhere
-#convert the number score to a letter grade 
+number_of_students = int(input("Enter number of student to enter grades for: "))
+
+for counter in range(number_of_students):
+    #prompt user to enter student name and number score
+    student_name = input("Enter student name: ")
+    student_score = float(input("Enter student score: "))
+
+    #store data somewhere
+    student_names.append(student_name)
+    student_scores.append(student_score)
+
+    if student_score >= 90:
+        student_letter_grades.append("A")
+    elif student_score >= 80:
+        student_letter_grades.append("B")
+    elif student_score >= 70:
+        student_letter_grades.append("C")
+    elif student_score >= 60:
+        student_letter_grades.append("D")
+    else:
+        student_letter_grades.append("F")
 
 #Print student data(name, score, grade)
+for index in range(len(student_name)):
+    print(f"{student_names[index]} : {student_scores[index]} : {student_letter_grades[index]}")
 #Calculate and print class average
 #convert the number score to a letter grade 
 
