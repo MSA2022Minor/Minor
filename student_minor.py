@@ -96,7 +96,7 @@ for counter in range(number_of_students):
         student_letter_grades.append("F")
 
 #Print student data(name, score, grade)
-for index in range(len(student_name)):
+for index in range(len(student_names)):
     print(f"{student_names[index]} : {student_scores[index]} : {student_letter_grades[index]}")
 #Calculate and print class average
 #convert the number score to a letter grade 
