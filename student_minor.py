@@ -1,5 +1,6 @@
 #print the menu
 from ast import While
+import math
 
 
 print("Select option from Menu\n-----------------------")
@@ -68,7 +69,7 @@ elif user_option == "2":
             print("ERROR: Inncorrect Username and or Password Length.")
 
 print("Ask user for student data.")
-#create 3 
+#create 3 empty lists
 student_names = []
 student_scores = []
 student_letter_grades = []
@@ -84,6 +85,7 @@ for counter in range(number_of_students):
     student_names.append(student_name)
     student_scores.append(student_score)
 
+    #convert the number score to a letter grade 
     if student_score >= 90:
         student_letter_grades.append("A")
     elif student_score >= 80:
@@ -97,9 +99,12 @@ for counter in range(number_of_students):
 
 #Print student data(name, score, grade)
 for index in range(len(student_names)):
-    print(f"{student_names[index]} : {student_scores[index]} : {student_letter_grades[index]}")
-#Calculate and print class average
-#convert the number score to a letter grade 
+    print(f"{student_names[index]} : {int(student_scores[index])}% : {student_letter_grades[index]}")
 
-#Print student data(name, score, grade)
 #Calculate and print class average
+total = 0
+for index in range(len(student_scores)):
+    total = total + student_scores[index]
+average = total / len(student_scores)
+
+print(f"Average: {int(round(average, 2))}%")
