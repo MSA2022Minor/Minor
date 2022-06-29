@@ -1,4 +1,3 @@
-print the menu
 
 def print_main_menu():
     print("Select option from Menu\n-----------------------")
@@ -19,10 +18,30 @@ def get_user_option():
             print("YaY! Good input")
             break     
     return user_option
+
+def login_user(u_name, u_pass):
+    user_file = open("users.txt", "r")
+    user_found = False
+
+    #read the lines from the file
+    for line in user_file:
+        credentials = line.split(", ")
+    #compare username and password for a match
+    if u_name == credentials[0] and u_pass == credentials[1].rstrip():
+        user_found = True
+        break
+    return user_found
+
+def create_user(u_name, u_pass):
+    pass
+def validate_username_or_password(user_credential)
+
 #prompt and get the option the user selected
 def main():
     print_main_menu()
     user_option = get_user_option()
+
+
 
 
     if user_option == "1":
@@ -30,20 +49,12 @@ def main():
             #If user chose 1, ask for user name and password
             user_name = input("Please enter your user name: ")
             user_pass = input("Please enter your password: ")
+            user_logged_in = login_user(user_name, user_pass)
             # - validate username and password combination in the users.txt file
             #open the users files
-            user_file = open("users.txt", "r")
-            user_found = False
+           
 
-            #read the lines from the file
-            for line in user_file:
-                credentials = line.split(", ")
-                #compare username and password for a match
-                if user_name == credentials[0] and user_pass == credentials[1].rstrip():
-                    user_found = True
-                    break
-
-            if user_found:
+            if user_logged_in:
                 # - if valid then move on to prompt for student data
                 print(f"User {user_name} successfully logged in!\n")
                 break
@@ -56,77 +67,77 @@ def main():
             
 
 #If user chose 2, ask for user name and password and
-elif user_option == "2":
-    while True:
-        user_name = input("Please enter your user name (4 - 12 characters): ")
-        user_pass = input("Please enter your password (6 - 16 characters): ")
+    elif user_option == "2":
+        while True:
+            user_name = input("Please enter your user name (4 - 12 characters): ")
+            user_pass = input("Please enter your password (6 - 16 characters): ")
 
-        user_name_length = len(user_name)
-        user_pass_length = len(user_pass)
+            user_name_length = len(user_name)
+            user_pass_length = len(user_pass)
 
-        if (user_name_length >= 4 and user_name_length <= 12) and (user_pass_length >= 6 and user_pass_length <= 16):
-            #write user and pass to file
-            user_file = open("users.txt", "a")
-            user_file.write(f"{user_name}, {user_pass}\n")
-            user_file.close()
-            break
+            if (user_name_length >= 4 and user_name_length <= 12) and (user_pass_length >= 6 and user_pass_length <= 16):
+                #write user and pass to file
+                user_file = open("users.txt", "a")
+                user_file.write(f"{user_name}, {user_pass}\n")
+                user_file.close()
+                break
+            else:
+                print("ERROR: Inncorrect Username and or Password Length.")
+
+    print("Ask user for student data.")
+    #create 3 empty lists
+    student_names = []
+    student_scores = []
+    student_letter_grades = []
+    #Ask user how many students to enter data for
+    number_of_students = int(input("Enter number of student to enter grades for: "))
+
+    for counter in range(number_of_students):
+        #prompt user to enter student name and number score
+        student_name = input("Enter student name: ")
+        student_score = float(input("Enter student score: "))
+
+        #store data somewhere
+        student_names.append(student_name)
+        student_scores.append(student_score)
+
+        #convert the number score to a letter grade 
+        if student_score >= 90:
+            student_letter_grades.append("A")
+        elif student_score >= 80:
+            student_letter_grades.append("B")
+        elif student_score >= 70:
+            student_letter_grades.append("C")
+        elif student_score >= 60:
+            student_letter_grades.append("D")
         else:
-            print("ERROR: Inncorrect Username and or Password Length.")
+            student_letter_grades.append("F")
 
-print("Ask user for student data.")
-#create 3 empty lists
-student_names = []
-student_scores = []
-student_letter_grades = []
-#Ask user how many students to enter data for
-number_of_students = int(input("Enter number of student to enter grades for: "))
+    #Print student data(name, score, grade)
+    for index in range(len(student_names)):
+        print(f"{student_names[index]} : {int(student_scores[index])}% : {student_letter_grades[index]}")
 
-for counter in range(number_of_students):
-    #prompt user to enter student name and number score
-    student_name = input("Enter student name: ")
-    student_score = float(input("Enter student score: "))
+    #Calculate and print class average
+    average_list = []
 
-    #store data somewhere
-    student_names.append(student_name)
-    student_scores.append(student_score)
+    total = 0
+    for index in range(len(student_scores)):
+        total = total + student_scores[index]
+    average = total / len(student_scores)
 
-    #convert the number score to a letter grade 
-    if student_score >= 90:
-        student_letter_grades.append("A")
-    elif student_score >= 80:
-        student_letter_grades.append("B")
-    elif student_score >= 70:
-        student_letter_grades.append("C")
-    elif student_score >= 60:
-        student_letter_grades.append("D")
+    if average >= 90:
+            average_list.append("A")
+    elif average >= 80:
+            average_list.append("B")
+    elif average >= 70:
+            average_list.append("C")
+    elif average >= 60:
+            average_list.append("D")
     else:
-        student_letter_grades.append("F")
-
-#Print student data(name, score, grade)
-for index in range(len(student_names)):
-    print(f"{student_names[index]} : {int(student_scores[index])}% : {student_letter_grades[index]}")
-
-#Calculate and print class average
-average_list = []
-
-total = 0
-for index in range(len(student_scores)):
-    total = total + student_scores[index]
-average = total / len(student_scores)
-
-if average >= 90:
-        average_list.append("A")
-elif average >= 80:
-        average_list.append("B")
-elif average >= 70:
-        average_list.append("C")
-elif average >= 60:
-        average_list.append("D")
-else:
-        average_list.append("F")
-        
-print(f"Average: {int(round(average, 2))}% {average_list}")
-
+            average_list.append("F")
+            
+    print(f"Average: {int(round(average, 2))}% {average_list}")
+main()
 
 
 
